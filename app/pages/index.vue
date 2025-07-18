@@ -13,10 +13,10 @@ const {data: upcoming, error: upcomingError} = await getUpcomingMovies();
 </script>
 <template>
   <main>
-      <div v-if="moviesError || !movies || movies?.length === 0" class="absolute inset-0 flex items-center justify-center">
-        <p class="text-zinc-700">Aucun film disponible</p>
-      </div>
-      <BaseCarousel v-else :movies="movies.slice(0,4)"/>
+    <div v-if="moviesError || !movies || movies?.length === 0">
+      <p class="text-zinc-700">Aucun film disponible</p>
+    </div>
+    <BaseCarousel v-else :movies="movies.slice(0,4)"/>
     <section>
       <SectionHeading label="A l'affiche" class="mt-10"/>
       <div v-if="featuredError || featured?.length === 0 " class="flex gap-5">

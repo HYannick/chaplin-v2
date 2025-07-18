@@ -18,7 +18,7 @@
       <LMarker
           :lat-lng="[45.5006853, 6.0477747]"/>
       <LTileLayer
-          url="https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png"
+          url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution="&amp;copy; <a href=&quot;https://www.openstreetmap.org/&quot;>OpenStreetMap</a> contributors"
           layer-type="base"
           name="OpenStreetMap"
