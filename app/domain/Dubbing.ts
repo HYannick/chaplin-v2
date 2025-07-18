@@ -1,0 +1,1 @@
+export type Dubbing = 'VO' | 'VOSTFR' | 'VF';
