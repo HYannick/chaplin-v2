@@ -6,6 +6,7 @@ export default defineNuxtConfig({
     port: 5436
   },
   nitro: {
+    preset: 'netlify',
     devProxy: {
       '/api': {
         target: 'http://localhost:3000',
