@@ -5,18 +5,17 @@ import {toMovieShowView} from '~/domain/Movie';
 import BaseCarousel from '~/components/common/BaseCarousel.vue';
 import BaseMovieListCarousel from '~/components/common/BaseMovieListCarousel.vue';
 
-const {getAllMovies, getFeaturedMovies, getUpcomingMovies} = useMovies();
+const {getFeaturedMovies, getUpcomingMovies} = useMovies();
 
-const {data: movies, error: moviesError} = await getAllMovies();
 const {data: featured, error: featuredError} = await getFeaturedMovies();
 const {data: upcoming, error: upcomingError} = await getUpcomingMovies();
 </script>
 <template>
   <main>
-    <div v-if="moviesError || !movies || movies?.length === 0">
+    <div v-if="featuredError || !featured || featured?.length === 0">
       <p class="text-zinc-700">Aucun film disponible</p>
     </div>
-    <BaseCarousel v-else :movies="movies.slice(0,4)"/>
+    <BaseCarousel v-else :movies="featured.slice(0,4)"/>
     <section>
       <SectionHeading label="A l'affiche" class="mt-10"/>
       <div v-if="featuredError || featured?.length === 0 " class="flex gap-5">
