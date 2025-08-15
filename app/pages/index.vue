@@ -7,8 +7,8 @@ import BaseMovieListCarousel from '~/components/common/BaseMovieListCarousel.vue
 
 const {getFeaturedMovies, getUpcomingMovies} = useMovies();
 
-const {data: featured, error: featuredError} = await getFeaturedMovies();
-const {data: upcoming, error: upcomingError} = await getUpcomingMovies();
+const {data: featured, error: featuredError} = getFeaturedMovies();
+const {data: upcoming, error: upcomingError} = getUpcomingMovies();
 </script>
 <template>
   <main>

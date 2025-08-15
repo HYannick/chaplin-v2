@@ -7,35 +7,39 @@ export const  useMovies = () => {
     'x-api-key': apiKey,
   }
 
-  const getAllMovies = async () => {
+  const getAllMovies = () => {
     return useFetch<Movie[]>(`${apiUrl}/movies`, {
       headers: {
         ...authHeaders,
       },
+      server: false
     });
   }
 
-  const getFeaturedMovies = async () => {
+  const getFeaturedMovies = () => {
     return useFetch<Movie[]>(`${apiUrl}/movies/featured`, {
       headers: {
         ...authHeaders,
       },
+      server: false
     });
   }
 
-  const getUpcomingMovies = async () => {
+  const getUpcomingMovies = () => {
     return useFetch<Movie[]>(`${apiUrl}/movies/upcoming`, {
       headers: {
         ...authHeaders,
       },
+      server: false
     });
   }
 
-  const getMovieById = async (id: string) => {
+  const getMovieById = (id: string) => {
     return useFetch<Movie>(`${apiUrl}/movies/${id}`, {
       headers: {
         ...authHeaders,
       },
+      server: false
     });
   }
 
