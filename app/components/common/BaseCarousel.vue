@@ -33,6 +33,7 @@
     </div>
 
     <button
+        aria-label="Previous item"
         @click="previousSlide"
         class="hidden md:block absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full transition-all duration-200 backdrop-blur-sm"
         :disabled="movies.length <= 1"
@@ -43,6 +44,7 @@
     </button>
 
     <button
+        aria-label="Next item"
         @click="nextSlide"
         class="hidden md:block absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full transition-all duration-200 backdrop-blur-sm"
         :disabled="movies.length <= 1"
@@ -54,6 +56,7 @@
 
     <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
       <button
+          aria-label="Next item"
           v-for="(_, index) in movies"
           :key="index"
           @click="goToSlide(index)"

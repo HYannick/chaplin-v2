@@ -21,7 +21,7 @@ const menuOptions = [
   <div class="fixed bottom-0 left-0 right-0 z-40 w-full py-2 px-10 md:py-10 md:px-0 bg-white md:bg-transparent md:relative">
     <ul class="flex justify-between text-end font-bold text-xl items-center md:space-y-1 md:flex-col md:justify-end md:items-end">
       <li class="text-zinc-700 hover:text-zinc-950" v-for="(option, index) in menuOptions" :key="index">
-        <NuxtLink :to="option.link" class="flex flex-col items-center justify-center md:justify-end md:items-end">
+        <NuxtLink :to="option.link" :aria-label="option.link" class="flex flex-col items-center justify-center md:justify-end md:items-end">
           <component :is="option.icon" class="md:hidden"/>
           <span class="text-sm md:text-lg mt-2 md:mt-0">{{ option.label }}</span>
         </NuxtLink>
