@@ -1,6 +1,6 @@
 <template>
-  <div class="bg-zinc-200 h-[400px] relative rounded-lg mt-20 overflow-hidden">
-    <div class="bg-zinc-100  p-10 rounded absolute top-1/2 right-10 -translate-y-1/2 z-20">
+  <div class="bg-zinc-200 mb-24 md:h-[400px] relative rounded-lg mt-20 overflow-hidden">
+    <div class="bg-zinc-100 p-10 rounded md:absolute md:top-1/2 md:right-10 md:-translate-y-1/2 z-20">
        <h3 class="text-3xl">Cinéma Charlie Chaplin</h3>
       <p class="text-zinc-400">Espace François Mitterrand</p>
       <p>Place Centenaire</p>
@@ -9,7 +9,7 @@
       <p>Tel: 04 79 84 74 59</p>
     </div>
     <LMap
-        class="relative z-10"
+        class="hidden md:block relative z-10"
         ref="map"
         :zoom="16"
         :center="[45.5006853, 6.0477747]"

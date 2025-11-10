@@ -1,15 +1,15 @@
 <template>
   <div>
     <div class="w-full mx-auto">
-      <div class="flex">
-        <div class="flex-[0.5] p-5 mt-10">
+      <div class="md:flex">
+        <div class="flex-[0.5] p-5 md:mt-10">
           <Header />
         </div>
-        <div class="min-h-screen flex-[2] mt-10 p-5">
+        <div class="min-h-screen flex-[2] md:mt-10 md:p-5">
           <NuxtPage/>
           <Footer />
         </div>
-        <div class="bg-zinc-100 flex-[0.5] flex items-end">
+        <div class="bg-zinc-100 hidden flex-[0.5] md:flex items-end">
           <div class="sticky bottom-0 w-64">
             <img src="/side_bg.png" alt="Side Background">
           </div>

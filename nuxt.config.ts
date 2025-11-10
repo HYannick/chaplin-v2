@@ -24,7 +24,8 @@ export default defineNuxtConfig({
     '@nuxt/scripts',
     '@nuxt/test-utils',
     '@nuxtjs/tailwindcss',
-    '@nuxtjs/leaflet'
+    '@nuxtjs/leaflet',
+    '@nuxtjs/device'
   ],
 
   runtimeConfig: {

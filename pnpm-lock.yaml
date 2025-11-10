@@ -26,6 +26,9 @@ importers:
       '@nuxt/test-utils':
         specifier: 3.19.2
         version: 3.19.2(magicast@0.3.5)(typescript@5.8.3)
+      '@nuxtjs/device':
+        specifier: 3.2.4
+        version: 3.2.4
       '@nuxtjs/leaflet':
         specifier: 1.2.6
         version: 1.2.6(typescript@5.8.3)
@@ -924,6 +927,9 @@ packages:
     engines: {node: ^20.19.0 || >=22.12.0}
     peerDependencies:
       vue: ^3.3.4
+
+  '@nuxtjs/device@3.2.4':
+    resolution: {integrity: sha512-jIvN6QeodBNrUrL/1FCHk4bebsiLsGHlJd8c/m2ksLrGY4IZ0npA8IYhDTdYV92epGxoe8+3iZOzCjav+6TshQ==}
 
   '@nuxtjs/leaflet@1.2.6':
     resolution: {integrity: sha512-AOefIxck/cp8LOndV91cbWfHy3qDOtxnGfSABZUxPpZNv3dBn+zY+kX/r8zmkHaoTAevFYMs7mv+oeMA2PmGJQ==}
@@ -6564,6 +6570,10 @@ snapshots:
       - vue-tsc
       - xml2js
       - yaml
+
+  '@nuxtjs/device@3.2.4':
+    dependencies:
+      defu: 6.1.4
 
   '@nuxtjs/leaflet@1.2.6(typescript@5.8.3)':
     dependencies:

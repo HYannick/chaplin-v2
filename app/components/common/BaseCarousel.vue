@@ -1,5 +1,5 @@
 <template>
-  <section class="bg-zinc-400 w-full h-[600px] rounded-lg overflow-hidden relative">
+  <section class="bg-zinc-400 h-[350px] w-full overflow-hidden relative md:h-[600px] md:rounded-lg">
     <div class="relative w-full h-full">
       <div
           v-for="(movie, index) in movies"
@@ -20,10 +20,10 @@
     </div>
 
     <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-zinc-900 p-8 h-56 flex flex-col justify-end">
-      <h1 class="text-white text-7xl font-bold transition-opacity duration-300 mb-10">
+      <h1 class="text-white text-2xl md:text-7xl font-bold transition-opacity duration-300 md:mb-10">
         {{ movies[currentIndex]?.title }}
       </h1>
-      <p class="text-zinc-300 mt-2 transition-opacity duration-300">
+      <p class="hidden md:block text-zinc-300 mt-2 transition-opacity duration-300">
         {{ movies[currentIndex]?.description }}
       </p>
       <NuxtLink class="text-2xl py-1 px-3 text-bold max-w-[300px] font-bold mt-5 relative z-20 text-zinc-900 bg-zinc-50
@@ -34,7 +34,7 @@
 
     <button
         @click="previousSlide"
-        class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full transition-all duration-200 backdrop-blur-sm"
+        class="hidden md:block absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full transition-all duration-200 backdrop-blur-sm"
         :disabled="movies.length <= 1"
     >
       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -44,7 +44,7 @@
 
     <button
         @click="nextSlide"
-        class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full transition-all duration-200 backdrop-blur-sm"
+        class="hidden md:block absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full transition-all duration-200 backdrop-blur-sm"
         :disabled="movies.length <= 1"
     >
       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -1,7 +1,9 @@
 <template>
-  <SectionHeading label="Le Cinéma Chaplin"/>
-  <img src="/cinema.webp" alt="Cinéma Charlie Chaplin" class="w-full h-[400px] object-cover mb-5 rounded-lg">
-  <p class="text-lg">Classé Art et Essai, le Cinéma Charlie Chaplin (154 places) propose des séances trois jours par semaine :<br><br>
+  <div class="px-5">
+    <SectionHeading label="Notre Cinéma"/>
+  </div>
+  <img src="/cinema.webp" alt="Cinéma Charlie Chaplin" class="w-full h-[400px] object-cover mb-5 md:rounded-lg">
+  <p class="text-lg p-5">Classé Art et Essai, le Cinéma Charlie Chaplin (154 places) propose des séances trois jours par semaine :<br><br>
 
     • le mardi (20h30)<br>
     • le samedi (18h et 20h30)<br>
