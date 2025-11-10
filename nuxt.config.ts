@@ -14,11 +14,24 @@ export default defineNuxtConfig({
       },
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+        { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
       ],
     },
   },
   nitro: {
     preset: 'netlify',
+    prerender: {
+      crawlLinks: true,
+      routes: ['/sitemap.xml', '/robots.txt'],
+      ignore: ['/admin']
+    },
+    routeRules: {
+      '/': { cache: { maxAge: 15 * 60 } },
+      '/tarifs': { cache: { maxAge: 60 * 60 * 24 } },
+      '/a-propos': { cache: { maxAge: 60 * 60 * 24 } },
+      '/films/**': { cache: { maxAge: 60 * 60 } },
+      '/api/**': { cache: false }
+    },
     devProxy: {
       '/api': {
         target: 'http://localhost:3000',
@@ -40,6 +53,26 @@ export default defineNuxtConfig({
     '@pinia/colada-nuxt',
     '@pinia/nuxt'
   ],
+
+  image: {
+    provider: 'ipx',
+    presets: {
+      thumb: {
+        modifiers: {
+          format: 'webp',
+          width: 300,
+          height: 400
+        }
+      },
+      hero: {
+        modifiers: {
+          format: 'webp',
+          width: 1200,
+          quality: 80
+        }
+      }
+    }
+  },
 
   runtimeConfig: {
     public: {
