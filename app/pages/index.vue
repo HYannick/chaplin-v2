@@ -60,7 +60,7 @@ useSeoMeta({
         >
           <template #default="{ item: movie }">
             <NuxtLink :to="`/films/${movie.id}`" class="block md:w-64 group">
-              <NuxtImg :src="movie.cover" class="w-full h-72 md:h-96 object-cover rounded-lg group-hover:shadow-xl group-hover:scale-[1.05] transition-all">
+              <NuxtImg :src="movie.cover" :alt="`Affiche du film${movie.title}`" class="w-full h-72 md:h-96 object-cover rounded-lg group-hover:shadow-xl group-hover:scale-[1.05] transition-all">
                 <template #placeholder>
                   <div class="bg-zinc-300 w-full h-full animate-pulse rounded"></div>
                 </template>
@@ -99,7 +99,7 @@ useSeoMeta({
         >
           <template #default="{ item: movie }">
             <NuxtLink :to="`/films/${movie.id}`" class="block md:w-64 group">
-              <NuxtImg :src="movie.cover" class="w-full h-72 md:h-96 object-cover rounded-lg group-hover:shadow-xl group-hover:scale-[1.05] transition-all">
+              <NuxtImg :src="movie.cover" :alt="`Affiche du film${movie.title}`" class="w-full h-72 md:h-96 object-cover rounded-lg group-hover:shadow-xl group-hover:scale-[1.05] transition-all">
                 <template #placeholder>
                   <div class="bg-zinc-300 w-full h-full animate-pulse rounded"></div>
                 </template>

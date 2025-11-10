@@ -30,12 +30,14 @@ const menuOptions = [
     <ul class="hidden md:block flex space-y-5 flex-col justify-end w-full font-bold text-xl mt-20">
       <li class="text-zinc-700 hover:text-zinc-950 flex justify-end">
         <a href="https://www.facebook.com/CinemaMontmelianCharlieChaplin" target="_blank"
+           aria-label="Facebook du cinéma Charlie Chaplin"
            class="flex items-center justify-center rounded-full border p-2 w-12 h-12">
           <LucideFacebook class="-ml-[1px]"/>
         </a>
       </li>
       <li class="text-zinc-700 hover:text-zinc-950 flex justify-end">
         <a href="https://montmelian.com/cinema-charlie-chaplin/" target="_blank"
+           aria-label="Montmelian site officiel - page Chaplin"
            class="flex items-center justify-center rounded-full border p-2 w-12 h-12">
           <LucideLink/>
         </a>
