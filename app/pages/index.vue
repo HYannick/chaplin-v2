@@ -10,10 +10,7 @@ import { useQuery } from '@pinia/colada'
 
 const {isDesktop} = useDevice()
 
-const itemsPerView = computed(() => {
-  console.log({isDesktop});
-  return isDesktop ? 4 : 2;
-})
+const itemsPerView = computed(() => isDesktop ? 4 : 2)
 const itemsPerPage = computed(() => isDesktop ? 3 : 2)
 
 const {
@@ -55,9 +52,6 @@ useSeoMeta({
         Aucun film à l'affiche
       </div>
       <div v-else-if="featured" class="flex gap-5">
-        {{isDesktop}}
-        {{itemsPerView}}
-        {{itemsPerPage}}
         <BaseMovieListCarousel
             :items="featured || []"
             :items-per-view="itemsPerView"
