@@ -46,7 +46,7 @@ useSeoMeta({
       <div v-else-if="featuredError || featured?.length === 0" class="flex gap-5">
         Aucun film à l'affiche
       </div>
-      <div v-else class="flex gap-5">
+      <div v-else-if="featured" class="flex gap-5">
         <BaseMovieListCarousel
             :items="featured || []"
             :items-per-view="$device.isDesktop ? 4 : 2"
@@ -85,7 +85,7 @@ useSeoMeta({
       <div v-else-if="upcomingError || upcoming?.length === 0 " class="flex gap-5">
         Aucun film prochainement
       </div>
-      <div v-else class="flex gap-5">
+      <div v-else-if="upcoming" class="flex gap-5">
         <BaseMovieListCarousel
             :items="upcoming || []"
             :items-per-view="$device.isDesktop ? 4 : 2"

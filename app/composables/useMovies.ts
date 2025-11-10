@@ -43,13 +43,16 @@ export const  useMovies = () => {
     return response.json();
   }
 
-  const getMovieById = (id: string) => {
-    return useFetch<Movie>(`${apiUrl}/movies/${id}`, {
+  const getMovieById = async (id: string) => {
+    const response = await fetch(`${apiUrl}/movies/${id}`, {
       headers: {
         ...authHeaders,
       },
-      server: false
-    });
+    })
+    if (!response.ok) {
+      throw new Error(`Failed to fetch movies: ${response.statusText}`);
+    }
+    return response.json();
   }
 
   return {

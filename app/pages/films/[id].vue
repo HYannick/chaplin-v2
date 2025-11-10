@@ -1,7 +1,13 @@
 <script setup lang="ts">
 import MovieShows from '~/components/movie/MovieShows.vue';
+import {useQuery} from '@pinia/colada';
 const {getMovieById} = useMovies();
-const {data: movie} = await getMovieById(useRoute().params.id);
+
+const {data: movie, isLoading, error} = useQuery({
+  key: [`movie-${useRoute().params.id}`],
+  query: () => getMovieById(useRoute().params.id),
+})
+
 useSeoMeta({
   title: `Cinéma Charlie Chaplin - ${movie?.value?.title || 'Détails du film'}`,
   ogTitle: `Cinéma Charlie Chaplin - ${movie?.value?.title || 'Détails du film'}`,
@@ -11,12 +17,15 @@ useSeoMeta({
 })
 </script>
 <template>
-  <div v-if="movie">
+  <div v-if="isLoading">
+    Chargement ...
+  </div>
+  <div v-else-if="error">
+    Erreur lors du chargement du film
+  </div>
+  <div v-else-if="movie">
     <MovieDetailsHero :movie/>
     <MovieShows :movie="movie" />
     <MovieGallery :movie="movie" />
-  </div>
-  <div v-else>
-    <p>Chargement...</p>
   </div>
 </template>
