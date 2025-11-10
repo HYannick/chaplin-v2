@@ -55,6 +55,7 @@ useSeoMeta({
         Aucun film à l'affiche
       </div>
       <div v-else-if="featured" class="flex gap-5">
+        {{isDesktop}}
         {{itemsPerView}}
         {{itemsPerPage}}
         <BaseMovieListCarousel
