@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import MovieShows from '~/components/movie/MovieShows.vue';
 import {useQuery} from '@pinia/colada';
-const {getMovieById} = useMovies();
-
+import {createMovieService} from '~/server/services/MovieService';
+const service = createMovieService();
 const {data: movie, isLoading, error} = useQuery({
-  key: [`movie-${useRoute().params.id}`],
-  query: () => getMovieById(useRoute().params.id),
+  key: ['movie', `movie-${useRoute().params.id}`],
+  query: () => service.getMovieById(useRoute().params.id),
 })
 
 useSeoMeta({

@@ -54,26 +54,6 @@ export default defineNuxtConfig({
     '@pinia/nuxt'
   ],
 
-  image: {
-    provider: 'ipx',
-    presets: {
-      thumb: {
-        modifiers: {
-          format: 'webp',
-          width: 300,
-          height: 400
-        }
-      },
-      hero: {
-        modifiers: {
-          format: 'webp',
-          width: 1200,
-          quality: 80
-        }
-      }
-    }
-  },
-
   runtimeConfig: {
     public: {
       apiUrl: process.env.NUXT_PUBLIC_API_BASE || 'http://localhost:3000/api',

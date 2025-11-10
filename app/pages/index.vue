@@ -1,23 +1,18 @@
 <script setup lang="ts">
 import SectionHeading from '~/components/common/SectionHeading.vue';
-import {useMovies} from '~/composables/useMovies';
 import {toMovieShowView} from '~/domain/Movie';
 import BaseCarousel from '~/components/common/BaseCarousel.vue';
 import BaseMovieListCarousel from '~/components/common/BaseMovieListCarousel.vue';
 
-const {getFeaturedMovies, getUpcomingMovies} = useMovies();
-
 import {useQuery} from '@pinia/colada'
 
+import  {createMovieService} from '~/server/services/MovieService'
+
+const service = createMovieService();
 const {isDesktop} = useDevice()
 
-const itemsPerView = useState('itemsPerView', () => 2)
-const itemsPerPage = useState('itemsPerPage', () => 2)
-
-onMounted(() => {
-  itemsPerView.value = isDesktop ? 4 : 2
-  itemsPerPage.value = isDesktop ? 3 : 2
-})
+const itemsPerView = computed(() => isDesktop ? 4 : 2)
+const itemsPerPage = computed(() => isDesktop ? 3 : 2)
 
 const {
   error: featuredError,
@@ -25,12 +20,12 @@ const {
   isLoading: featuredIsLoading,
 } = useQuery({
   key: ['featured'],
-  query: () => getFeaturedMovies(),
+  query: () => service.getFeaturedMovies(),
 })
 const {data: upcoming, error: upcomingError, isLoading: upcomingIsLoading} =
     useQuery({
       key: ['upcoming'],
-      query: () => getUpcomingMovies(),
+      query: () => service.getUpcomingMovies(),
     })
 
 useSeoMeta({
