@@ -6,8 +6,21 @@ import BaseCarousel from '~/components/common/BaseCarousel.vue';
 import BaseMovieListCarousel from '~/components/common/BaseMovieListCarousel.vue';
 const {getFeaturedMovies, getUpcomingMovies} = useMovies();
 
-const {data: featured, error: featuredError} = getFeaturedMovies();
-const {data: upcoming, error: upcomingError} = getUpcomingMovies();
+import { useQuery } from '@pinia/colada'
+
+const {
+  error: featuredError,
+  data: featured,
+  isLoading: featuredIsLoading,
+} = useQuery({
+  key: ['featured'],
+  query: () => getFeaturedMovies(),
+})
+const {data: upcoming, error: upcomingError, isLoading: upcomingIsLoading} =
+    useQuery({
+      key: ['upcoming'],
+      query: () => getUpcomingMovies(),
+    })
 
 useSeoMeta({
   title: 'Cinéma Charlie Chaplin - Accueil',
@@ -18,13 +31,19 @@ useSeoMeta({
 </script>
 <template>
   <main>
-    <div v-if="featuredError || !featured || featured?.length === 0">
+    <div v-if="featuredError">
       <p class="text-zinc-700">Aucun film disponible</p>
+    </div>
+    <div v-else-if="featuredIsLoading">
+      <p class="text-zinc-700">Loading</p>
     </div>
     <BaseCarousel v-else :movies="featured.slice(0,4)"/>
     <section class="p-2 md:p-0">
       <SectionHeading label="A l'affiche" class="mt-10"/>
-      <div v-if="featuredError || featured?.length === 0 " class="flex gap-5">
+      <div v-if="featuredIsLoading">
+        Loading..
+      </div>
+      <div v-else-if="featuredError || featured?.length === 0" class="flex gap-5">
         Aucun film à l'affiche
       </div>
       <div v-else class="flex gap-5">
@@ -60,7 +79,10 @@ useSeoMeta({
     </section>
     <section class="mt-20 p-2 md:p-0">
       <SectionHeading label="Prochainement"/>
-      <div v-if="upcomingError || upcoming?.length === 0 " class="flex gap-5">
+      <div v-if="upcomingIsLoading">
+        Loading..
+      </div>
+      <div v-else-if="upcomingError || upcoming?.length === 0 " class="flex gap-5">
         Aucun film prochainement
       </div>
       <div v-else class="flex gap-5">

@@ -7,31 +7,40 @@ export const  useMovies = () => {
     'x-api-key': apiKey,
   }
 
-  const getAllMovies = () => {
-    return useFetch<Movie[]>(`${apiUrl}/movies`, {
+  const getAllMovies = async () => {
+    const response = await fetch(`${apiUrl}/movies`, {
       headers: {
         ...authHeaders,
       },
-      server: false
     });
+    if (!response.ok) {
+      throw new Error(`Failed to fetch movies: ${response.statusText}`);
+    }
+    return response.json();
   }
 
-  const getFeaturedMovies = () => {
-    return useFetch<Movie[]>(`${apiUrl}/movies/featured`, {
+  const getFeaturedMovies = async () => {
+    const response = await fetch(`${apiUrl}/movies/featured`, {
       headers: {
         ...authHeaders,
       },
-      server: false
-    });
+    })
+    if (!response.ok) {
+      throw new Error(`Failed to fetch movies: ${response.statusText}`);
+    }
+    return response.json();
   }
 
-  const getUpcomingMovies = () => {
-    return useFetch<Movie[]>(`${apiUrl}/movies/upcoming`, {
+  const getUpcomingMovies = async () => {
+    const response = await fetch(`${apiUrl}/movies/upcoming`, {
       headers: {
         ...authHeaders,
       },
-      server: false
-    });
+    })
+    if (!response.ok) {
+      throw new Error(`Failed to fetch movies: ${response.statusText}`);
+    }
+    return response.json();
   }
 
   const getMovieById = (id: string) => {

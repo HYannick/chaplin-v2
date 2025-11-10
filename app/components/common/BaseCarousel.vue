@@ -74,6 +74,7 @@ const props = withDefaults(defineProps<{
 }>(), {
   autoplay: false,
   interval: 5000,
+  movies: () => [],
 })
 
 const currentIndex = ref(0)

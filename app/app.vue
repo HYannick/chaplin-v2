@@ -8,6 +8,7 @@
         <div class="min-h-screen flex-[2] md:mt-10 md:p-5">
           <NuxtPage/>
           <Footer />
+          <PiniaColadaDevtools  />
         </div>
         <div class="bg-zinc-100 hidden flex-[0.5] md:flex items-end">
           <div class="sticky bottom-0 w-64">
@@ -21,6 +22,7 @@
 <script setup lang="ts">
 import Header from '~/components/common/Header.vue';
 import Footer from '~/components/common/Footer.vue';
+import { PiniaColadaDevtools } from '@pinia/colada-devtools'
 </script>
 <style>
 body {

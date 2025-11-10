@@ -36,7 +36,9 @@ export default defineNuxtConfig({
     '@nuxt/test-utils',
     '@nuxtjs/tailwindcss',
     '@nuxtjs/leaflet',
-    '@nuxtjs/device'
+    '@nuxtjs/device',
+    '@pinia/colada-nuxt',
+    '@pinia/nuxt'
   ],
 
   runtimeConfig: {
