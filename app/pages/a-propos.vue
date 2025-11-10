@@ -1,9 +1,9 @@
 <template>
-  <div class="px-5">
+  <div class="px-5 md:px-0">
     <SectionHeading label="Notre Cinéma"/>
   </div>
   <img src="/cinema.webp" alt="Cinéma Charlie Chaplin" class="w-full h-[400px] object-cover mb-5 md:rounded-lg">
-  <p class="text-lg p-5">Classé Art et Essai, le Cinéma Charlie Chaplin (154 places) propose des séances trois jours par semaine :<br><br>
+  <p class="text-lg p-5 md:p-0">Classé Art et Essai, le Cinéma Charlie Chaplin (154 places) propose des séances trois jours par semaine :<br><br>
 
     • le mardi (20h30)<br>
     • le samedi (18h et 20h30)<br>

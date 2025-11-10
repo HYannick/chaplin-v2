@@ -1,5 +1,5 @@
 <template>
-  <section class="bg-zinc-400 h-[350px] w-full overflow-hidden relative md:h-[600px] md:rounded-lg">
+  <section class="bg-zinc-900 h-[350px] w-full overflow-hidden relative md:h-[600px] md:rounded-lg">
     <div class="relative w-full h-full">
       <div
           v-for="(movie, index) in movies"
@@ -9,7 +9,7 @@
       >
         <NuxtImg
             :src="movie.imageSet.values[0]"
-            class="w-full h-full object-cover object-top rounded"
+            class="w-full h-full object-cover object-top rounded opacity-60"
             :alt="movie.title"
         >
           <template #placeholder>
@@ -19,11 +19,11 @@
       </div>
     </div>
 
-    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-zinc-900 p-8 h-56 flex flex-col justify-end">
-      <h1 class="text-white text-2xl md:text-7xl font-bold transition-opacity duration-300 md:mb-10">
+    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-zinc-900 p-8 h-92 flex flex-col justify-end">
+      <h1 class="text-white text-2xl md:text-5xl font-bold transition-opacity duration-300 md:mb-5">
         {{ movies[currentIndex]?.title }}
       </h1>
-      <p class="hidden md:block text-zinc-300 mt-2 transition-opacity duration-300">
+      <p class="hidden md:block text-zinc-100 mt-2 transition-opacity duration-300">
         {{ movies[currentIndex]?.description }}
       </p>
       <NuxtLink class="text-2xl py-1 px-3 text-bold max-w-[300px] font-bold mt-5 relative z-20 text-zinc-900 bg-zinc-50
