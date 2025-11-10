@@ -51,7 +51,9 @@ export default defineNuxtConfig({
     '@nuxtjs/leaflet',
     '@nuxtjs/device',
     '@pinia/colada-nuxt',
-    '@pinia/nuxt'
+    '@pinia/nuxt',
+    '@nuxtjs/sitemap',
+    '@nuxtjs/robots'
   ],
 
   runtimeConfig: {
