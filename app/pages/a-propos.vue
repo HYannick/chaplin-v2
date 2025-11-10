@@ -17,4 +17,11 @@
 </template>
 <script setup lang="ts">
 import SectionHeading from '~/components/common/SectionHeading.vue';
+
+useSeoMeta({
+  title: 'Cinéma Charlie Chaplin - À propos',
+  ogTitle: 'Cinéma Charlie Chaplin - À propos',
+  description: 'Découvrez notre cinéma Charlie Chaplin à Montmélian, son histoire, sa programmation et ses services.',
+  ogDescription: 'Découvrez notre cinéma Charlie Chaplin à Montmélian, son histoire, sa programmation et ses services.',
+})
 </script>

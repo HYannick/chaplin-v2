@@ -54,4 +54,12 @@
 </template>
 <script setup lang="ts">
 import SectionHeading from '~/components/common/SectionHeading.vue';
+
+useSeoMeta({
+  title: 'Cinéma Charlie Chaplin - Nos Tarifs',
+  ogTitle:  'Cinéma Charlie Chaplin - Nos Tarifs',
+  description: 'Découvrez les tarifs du cinéma Charlie Chaplin à Montmélian pour profiter de nos séances de cinéma.',
+  ogDescription: 'Découvrez les tarifs du cinéma Charlie Chaplin à Montmélian pour profiter de nos séances de cinéma.',
+
+})
 </script>

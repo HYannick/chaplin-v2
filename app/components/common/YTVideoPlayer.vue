@@ -9,10 +9,8 @@ const emit = defineEmits(['isPlaying'])
 const isLoaded = ref(false)
 const isPlaying = ref(false)
 const video = ref()
-async function play() {
-  await video.value.player.playVideo()
-}
-function stateChange(event) {
+
+function stateChange(event: any) {
   isPlaying.value = event.data === 1
   if (isPlaying.value) {
     emit('isPlaying', true)
@@ -24,7 +22,7 @@ function stateChange(event) {
 const videoId = computed((): string => {
   const regex = /(?:https?:\/\/)?(?:www\.)?youtu(?:\.be\/|be\.com\/(?:watch\?v=|embed\/|v\/|shorts\/))([a-zA-Z0-9_-]{11})/;
   const match = props.link.match(regex);
-  return match ? match[1] : '';
+  return (match ? match[1] : '') || '';
 });
 </script>
 

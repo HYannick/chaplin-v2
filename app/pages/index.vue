@@ -8,6 +8,13 @@ const {getFeaturedMovies, getUpcomingMovies} = useMovies();
 
 const {data: featured, error: featuredError} = getFeaturedMovies();
 const {data: upcoming, error: upcomingError} = getUpcomingMovies();
+
+useSeoMeta({
+  title: 'Cinéma Charlie Chaplin - Accueil',
+  ogTitle:  'Cinéma Charlie Chaplin - Accueil',
+  description: 'Le cinéma Charlie Chaplin à Montmélian vous accueille pour découvrir les dernières sorties cinématographiques dans une ambiance conviviale.',
+  ogDescription: 'Le cinéma Charlie Chaplin à Montmélian vous accueille pour découvrir les dernières sorties cinématographiques dans une ambiance conviviale.',
+})
 </script>
 <template>
   <main>
