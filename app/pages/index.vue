@@ -10,7 +10,10 @@ import { useQuery } from '@pinia/colada'
 
 const {isDesktop} = useDevice()
 
-const itemsPerView = computed(() => isDesktop ? 4 : 2)
+const itemsPerView = computed(() => {
+  console.log({isDesktop});
+  return isDesktop ? 4 : 2;
+})
 const itemsPerPage = computed(() => isDesktop ? 3 : 2)
 
 const {
