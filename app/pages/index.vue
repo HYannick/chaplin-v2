@@ -11,8 +11,13 @@ import {useQuery} from '@pinia/colada'
 
 const {isDesktop} = useDevice()
 
-const itemsPerView = computed(() => isDesktop ? 4 : 2)
-const itemsPerPage = computed(() => isDesktop ? 3 : 2)
+const itemsPerView = useState('itemsPerView', () => 2)
+const itemsPerPage = useState('itemsPerPage', () => 2)
+
+onMounted(() => {
+  itemsPerView.value = isDesktop ? 4 : 2
+  itemsPerPage.value = isDesktop ? 3 : 2
+})
 
 const {
   error: featuredError,
@@ -53,37 +58,35 @@ useSeoMeta({
         Aucun film à l'affiche
       </div>
       <div v-else-if="featured" class="flex gap-5">
-        <ClientOnly>
-          <BaseMovieListCarousel
-              :items="featured || []"
-              :items-per-view="itemsPerView"
-              :items-per-page="itemsPerPage"
-              :autoplay="false"
-              :infinite="true"
-              :show-arrows="featured?.length > 4"
-              :show-dots="false"
-              container-class="max-w-6xl mx-auto"
-              item-class="px-2"
-          >
-            <template #default="{ item: movie }">
-              <NuxtLink :to="`/films/${movie.id}`" class="block md:w-64 group">
-                <NuxtImg :src="movie.cover" :alt="`Affiche du film${movie.title}`"
-                         class="w-full h-72 md:h-96 object-cover rounded-lg group-hover:shadow-xl group-hover:scale-[1.05] transition-all">
-                  <template #placeholder>
-                    <div class="bg-zinc-300 w-full h-full animate-pulse rounded"></div>
-                  </template>
-                </NuxtImg>
-                <h3 class="text-lg font-semibold mt-2 line-clamp-1">{{ movie.title }}</h3>
-                <ul>
-                  <li v-for="show in movie.shows" :key="show.id" class="flex justify-between">
-                    <span class="text-sm text-zinc-500">{{ toMovieShowView(show).date }}</span>
-                    <span class="text-sm text-zinc-500">{{ show.dubbing }}</span>
-                  </li>
-                </ul>
-              </NuxtLink>
-            </template>
-          </BaseMovieListCarousel>
-        </ClientOnly>
+        <BaseMovieListCarousel
+            :items="featured || []"
+            :items-per-view="itemsPerView"
+            :items-per-page="itemsPerPage"
+            :autoplay="false"
+            :infinite="true"
+            :show-arrows="featured?.length > 4"
+            :show-dots="false"
+            container-class="max-w-6xl mx-auto"
+            item-class="px-2"
+        >
+          <template #default="{ item: movie }">
+            <NuxtLink :to="`/films/${movie.id}`" class="block md:w-64 group">
+              <NuxtImg :src="movie.cover" :alt="`Affiche du film${movie.title}`"
+                       class="w-full h-72 md:h-96 object-cover rounded-lg group-hover:shadow-xl group-hover:scale-[1.05] transition-all">
+                <template #placeholder>
+                  <div class="bg-zinc-300 w-full h-full animate-pulse rounded"></div>
+                </template>
+              </NuxtImg>
+              <h3 class="text-lg font-semibold mt-2 line-clamp-1">{{ movie.title }}</h3>
+              <ul>
+                <li v-for="show in movie.shows" :key="show.id" class="flex justify-between">
+                  <span class="text-sm text-zinc-500">{{ toMovieShowView(show).date }}</span>
+                  <span class="text-sm text-zinc-500">{{ show.dubbing }}</span>
+                </li>
+              </ul>
+            </NuxtLink>
+          </template>
+        </BaseMovieListCarousel>
       </div>
     </section>
     <section class="mt-20 p-2 md:p-0">
@@ -95,37 +98,35 @@ useSeoMeta({
         Aucun film prochainement
       </div>
       <div v-else-if="upcoming" class="flex gap-5">
-        <ClientOnly>
-          <BaseMovieListCarousel
-              :items="upcoming || []"
-              :items-per-view="itemsPerView"
-              :items-per-page="itemsPerPage"
-              :show-arrows="upcoming?.length > 4"
-              :autoplay="false"
-              :infinite="true"
-              container-class="max-w-6xl mx-auto"
-              :show-dots="false"
-              item-class="px-2"
-          >
-            <template #default="{ item: movie }">
-              <NuxtLink :to="`/films/${movie.id}`" class="block md:w-64 group">
-                <NuxtImg :src="movie.cover" :alt="`Affiche du film${movie.title}`"
-                         class="w-full h-72 md:h-96 object-cover rounded-lg group-hover:shadow-xl group-hover:scale-[1.05] transition-all">
-                  <template #placeholder>
-                    <div class="bg-zinc-300 w-full h-full animate-pulse rounded"></div>
-                  </template>
-                </NuxtImg>
-                <h3 class="text-lg font-semibold mt-2 line-clamp-1">{{ movie.title }}</h3>
-                <ul>
-                  <li v-for="show in movie.shows" :key="show.id" class="flex justify-between">
-                    <span class="text-sm text-zinc-500">{{ toMovieShowView(show).date }}</span>
-                    <span class="text-sm text-zinc-500">{{ show.dubbing }}</span>
-                  </li>
-                </ul>
-              </NuxtLink>
-            </template>
-          </BaseMovieListCarousel>
-        </ClientOnly>
+        <BaseMovieListCarousel
+            :items="upcoming || []"
+            :items-per-view="itemsPerView"
+            :items-per-page="itemsPerPage"
+            :show-arrows="upcoming?.length > 4"
+            :autoplay="false"
+            :infinite="true"
+            container-class="max-w-6xl mx-auto"
+            :show-dots="false"
+            item-class="px-2"
+        >
+          <template #default="{ item: movie }">
+            <NuxtLink :to="`/films/${movie.id}`" class="block md:w-64 group">
+              <NuxtImg :src="movie.cover" :alt="`Affiche du film${movie.title}`"
+                       class="w-full h-72 md:h-96 object-cover rounded-lg group-hover:shadow-xl group-hover:scale-[1.05] transition-all">
+                <template #placeholder>
+                  <div class="bg-zinc-300 w-full h-full animate-pulse rounded"></div>
+                </template>
+              </NuxtImg>
+              <h3 class="text-lg font-semibold mt-2 line-clamp-1">{{ movie.title }}</h3>
+              <ul>
+                <li v-for="show in movie.shows" :key="show.id" class="flex justify-between">
+                  <span class="text-sm text-zinc-500">{{ toMovieShowView(show).date }}</span>
+                  <span class="text-sm text-zinc-500">{{ show.dubbing }}</span>
+                </li>
+              </ul>
+            </NuxtLink>
+          </template>
+        </BaseMovieListCarousel>
       </div>
     </section>
   </main>
