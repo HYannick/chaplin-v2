@@ -8,6 +8,11 @@ const {getFeaturedMovies, getUpcomingMovies} = useMovies();
 
 import { useQuery } from '@pinia/colada'
 
+const {isDesktop} = useDevice()
+
+const itemsPerView = computed(() => isDesktop ? 4 : 2)
+const itemsPerPage = computed(() => isDesktop ? 3 : 2)
+
 const {
   error: featuredError,
   data: featured,
@@ -49,8 +54,8 @@ useSeoMeta({
       <div v-else-if="featured" class="flex gap-5">
         <BaseMovieListCarousel
             :items="featured || []"
-            :items-per-view="$device.isDesktop ? 4 : 2"
-            :items-per-page="$device.isDesktop ? 3 : 2"
+            :items-per-view="itemsPerView"
+            :items-per-page="itemsPerPage"
             :autoplay="false"
             :infinite="true"
             :show-arrows="featured?.length > 4"
@@ -88,8 +93,8 @@ useSeoMeta({
       <div v-else-if="upcoming" class="flex gap-5">
         <BaseMovieListCarousel
             :items="upcoming || []"
-            :items-per-view="$device.isDesktop ? 4 : 2"
-            :items-per-page="$device.isDesktop ? 3 : 2"
+            :items-per-view="itemsPerView"
+            :items-per-page="itemsPerPage"
             :show-arrows="upcoming?.length > 4"
             :autoplay="false"
             :infinite="true"
