@@ -55,6 +55,8 @@ useSeoMeta({
         Aucun film à l'affiche
       </div>
       <div v-else-if="featured" class="flex gap-5">
+        {{itemsPerView}}
+        {{itemsPerPage}}
         <BaseMovieListCarousel
             :items="featured || []"
             :items-per-view="itemsPerView"
