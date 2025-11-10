@@ -6,6 +6,17 @@ export default defineNuxtConfig({
   devServer: {
     port: 5436
   },
+  app: {
+    head: {
+      title: 'Cinéma Chaplin',
+      htmlAttrs: {
+        lang: 'fr',
+      },
+      link: [
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      ],
+    },
+  },
   nitro: {
     preset: 'netlify',
     devProxy: {
