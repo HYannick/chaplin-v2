@@ -29,7 +29,7 @@ export default defineNuxtConfig({
       ignore: ['/admin'],
     },
     routeRules: {
-      '/': { cache: { maxAge: 15 * 60 } },
+      '/': { cache: false },
       '/tarifs': { cache: { maxAge: 60 * 60 * 24 } },
       '/a-propos': { cache: { maxAge: 60 * 60 * 24 } },
       '/films/**': { cache: { maxAge: 60 * 60 } },

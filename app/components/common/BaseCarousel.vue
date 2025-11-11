@@ -137,7 +137,7 @@ const touchStartX = ref(0)
 const touchEndX = ref(0)
 const handleTouchStart = (e: TouchEvent) => {
   touchStartX.value = e.touches[0].clientX
-  stopAutoplay()
+  touchEndX.value = e.touches[0].clientX
 }
 
 const handleTouchMove = (e: TouchEvent) => {
@@ -146,7 +146,7 @@ const handleTouchMove = (e: TouchEvent) => {
 
 const handleTouchEnd = () => {
   const diff = touchStartX.value - touchEndX.value
-  const minSwipeDistance = 200
+  const minSwipeDistance = 100
 
   if (Math.abs(diff) > minSwipeDistance) {
     if (diff > 0) {
