@@ -146,7 +146,7 @@ const handleTouchMove = (e: TouchEvent) => {
 
 const handleTouchEnd = () => {
   const diff = touchStartX.value - touchEndX.value
-  const minSwipeDistance = 50
+  const minSwipeDistance = 100
 
   if (Math.abs(diff) > minSwipeDistance) {
     if (diff > 0) {
