@@ -151,16 +151,16 @@ const goToIndex = (index: number) => {
 }
 
 const goToPage = (page: number) => {
-  const index = page * props.itemsPerPage
+  const index = page * itemsPerPage.value
   goToIndex(index)
 }
 
 const next = () => {
-  goToIndex(currentIndex.value + props.itemsPerPage)
+  goToIndex(currentIndex.value +  itemsPerPage.value)
 }
 
 const previous = () => {
-  goToIndex(currentIndex.value - props.itemsPerPage)
+  goToIndex(currentIndex.value -  itemsPerPage.value)
 }
 
 const startAutoplay = () => {
