@@ -1,8 +1,11 @@
 <template>
-  <section class="bg-zinc-900 h-[350px] w-full overflow-hidden relative md:h-[600px] md:rounded-lg">
+  <section class="bg-zinc-900 h-[350px] w-full overflow-hidden relative md:h-[600px] md:rounded-lg"
+           @touchstart="handleTouchStart"
+           @touchmove="handleTouchMove"
+           @touchend="handleTouchEnd">
     <div class="relative w-full h-full">
       <div
-          v-for="(movie, index) in movies"
+          v-for="(movie, index) in movieList"
           :key="movie.id || index"
           class="absolute inset-0 transition-opacity duration-700 ease-in-out"
           :class="index === currentIndex ? 'opacity-100' : 'opacity-0'"
@@ -57,7 +60,7 @@
     <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
       <button
           aria-label="Next item"
-          v-for="(_, index) in movies"
+          v-for="(_, index) in movieList"
           :key="index"
           @click="goToSlide(index)"
           class="w-10 h-1 rounded-full transition-all duration-200"
@@ -69,6 +72,7 @@
 
 <script lang="ts" setup>
 import type {Movie} from '~/domain/Movie';
+import {ref} from 'vue';
 
 const props = withDefaults(defineProps<{
   movies: Movie[];
@@ -81,15 +85,18 @@ const props = withDefaults(defineProps<{
 })
 
 const currentIndex = ref(0)
-let autoplayTimer = null
+const MAX_COUNT = 4;
+let autoplayTimer = null;
+
+const movieList = computed(() => props.movies.slice(0,MAX_COUNT));
 
 const nextSlide = () => {
-  currentIndex.value = (currentIndex.value + 1) % props.movies.length
+  currentIndex.value = (currentIndex.value + 1) % MAX_COUNT
 }
 
 const previousSlide = () => {
   currentIndex.value = currentIndex.value === 0
-      ? props.movies.length - 1
+      ? MAX_COUNT
       : currentIndex.value - 1
 }
 
@@ -125,4 +132,32 @@ watch(() => props.autoplay, (newVal) => {
     stopAutoplay()
   }
 })
+
+const touchStartX = ref(0)
+const touchEndX = ref(0)
+const handleTouchStart = (e: TouchEvent) => {
+  touchStartX.value = e.touches[0].clientX
+  stopAutoplay()
+}
+
+const handleTouchMove = (e: TouchEvent) => {
+  touchEndX.value = e.touches[0].clientX
+}
+
+const handleTouchEnd = () => {
+  const diff = touchStartX.value - touchEndX.value
+  const minSwipeDistance = 50
+
+  if (Math.abs(diff) > minSwipeDistance) {
+    if (diff > 0) {
+      nextSlide()
+    } else {
+      previousSlide()
+    }
+  }
+
+  if (props.autoplay) {
+    startAutoplay()
+  }
+}
 </script>

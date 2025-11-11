@@ -15,7 +15,21 @@
           :style="{ width: `${itemWidth}%` }"
           :class="itemClass"
       >
-        <slot :item="item" :index="index" :isActive="index === currentIndex" />
+        <NuxtLink :to="`/films/${item.id}`" class="block md:w-64 group">
+          <NuxtImg :src="item.cover" :alt="`Affiche du film${item.title}`"
+                   class="w-full h-72 md:h-96 object-cover rounded-lg group-hover:shadow-xl group-hover:scale-[1.05] transition-all">
+            <template #placeholder>
+              <div class="bg-zinc-300 w-full h-full animate-pulse rounded"></div>
+            </template>
+          </NuxtImg>
+          <h3 class="text-lg font-semibold mt-2 line-clamp-1">{{ item.title }}</h3>
+          <ul>
+            <li v-for="show in item.shows" :key="show.id" class="flex justify-between">
+              <span class="text-sm text-zinc-500">{{ toMovieShowView(show).date }}</span>
+              <span class="text-sm text-zinc-500">{{ show.dubbing }}</span>
+            </li>
+          </ul>
+        </NuxtLink>
       </div>
     </div>
 
@@ -62,11 +76,10 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted, watch } from 'vue'
 import {ChevronLeft, ChevronRight} from 'lucide-vue-next';
-import type {Movie} from '~/domain/Movie';
+import {type Movie, toMovieShowView} from '~/domain/Movie';
 
 interface CarouselProps {
   items: Movie[]
-  showArrows?: boolean
   showDots?: boolean
   autoplay?: boolean
   autoplayInterval?: number
@@ -80,7 +93,7 @@ interface CarouselProps {
 }
 
 const props = withDefaults(defineProps<CarouselProps>(), {
-  showArrows: true,
+  items: () => [],
   showDots: true,
   autoplay: false,
   autoplayInterval: 3000,
@@ -115,7 +128,7 @@ const totalItems = computed(() => props.items.length)
 const totalPages = computed(() => Math.ceil(totalItems.value / itemsPerPage.value))
 const currentPage = computed(() => Math.floor(currentIndex.value / itemsPerPage.value))
 const maxIndex = computed(() => totalItems.value - itemsPerView.value)
-
+const showArrows = computed(() => totalItems.value > itemsPerView.value)
 const canGoPrevious = computed(() =>
     props.infinite || currentIndex.value > 0
 )
