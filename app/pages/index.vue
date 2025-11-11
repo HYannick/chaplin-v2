@@ -9,10 +9,6 @@ import {useQuery} from '@pinia/colada'
 import  {createMovieService} from '~/server/services/MovieService'
 
 const service = createMovieService();
-const {isDesktop} = useDevice()
-
-const itemsPerView = computed(() => isDesktop ? 4 : 2)
-const itemsPerPage = computed(() => isDesktop ? 3 : 2)
 
 const {
   error: featuredError,
@@ -55,8 +51,6 @@ useSeoMeta({
       <div v-else-if="featured" class="flex gap-5">
         <BaseMovieListCarousel
             :items="featured || []"
-            :items-per-view="itemsPerView"
-            :items-per-page="itemsPerPage"
             :autoplay="false"
             :infinite="true"
             :show-arrows="featured?.length > 4"
@@ -95,8 +89,6 @@ useSeoMeta({
       <div v-else-if="upcoming" class="flex gap-5">
         <BaseMovieListCarousel
             :items="upcoming || []"
-            :items-per-view="itemsPerView"
-            :items-per-page="itemsPerPage"
             :show-arrows="upcoming?.length > 4"
             :autoplay="false"
             :infinite="true"
