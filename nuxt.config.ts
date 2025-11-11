@@ -6,6 +6,9 @@ export default defineNuxtConfig({
   devServer: {
     port: 5436
   },
+  site: {
+    url: process.env.NUXT_PUBLIC_SITE_URL
+  },
   app: {
     head: {
       title: 'Cinéma Chaplin',
@@ -23,7 +26,7 @@ export default defineNuxtConfig({
     prerender: {
       crawlLinks: true,
       routes: ['/sitemap.xml', '/robots.txt'],
-      ignore: ['/admin']
+      ignore: ['/admin'],
     },
     routeRules: {
       '/': { cache: { maxAge: 15 * 60 } },
