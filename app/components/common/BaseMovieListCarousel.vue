@@ -66,8 +66,6 @@ import type {Movie} from '~/domain/Movie';
 
 interface CarouselProps {
   items: Movie[]
-  itemsPerView?: number
-  itemsPerPage?: number
   showArrows?: boolean
   showDots?: boolean
   autoplay?: boolean
@@ -82,8 +80,6 @@ interface CarouselProps {
 }
 
 const props = withDefaults(defineProps<CarouselProps>(), {
-  itemsPerView: 1,
-  itemsPerPage: 1,
   showArrows: true,
   showDots: true,
   autoplay: false,
@@ -109,11 +105,16 @@ const autoplayTimer = ref<NodeJS.Timeout>()
 const touchStartX = ref(0)
 const touchEndX = ref(0)
 
-const itemWidth = computed(() => 100 / props.itemsPerView)
+const {isDesktop} = useDevice()
+
+const itemsPerView = ref(2);
+const itemsPerPage =ref(2);
+
+const itemWidth = computed(() => 100 / itemsPerView.value)
 const totalItems = computed(() => props.items.length)
-const totalPages = computed(() => Math.ceil(totalItems.value / props.itemsPerPage))
-const currentPage = computed(() => Math.floor(currentIndex.value / props.itemsPerPage))
-const maxIndex = computed(() => totalItems.value - props.itemsPerView)
+const totalPages = computed(() => Math.ceil(totalItems.value / itemsPerPage.value))
+const currentPage = computed(() => Math.floor(currentIndex.value / itemsPerPage.value))
+const maxIndex = computed(() => totalItems.value - itemsPerView.value)
 
 const canGoPrevious = computed(() =>
     props.infinite || currentIndex.value > 0
@@ -150,16 +151,16 @@ const goToIndex = (index: number) => {
 }
 
 const goToPage = (page: number) => {
-  const index = page * props.itemsPerPage
+  const index = page * itemsPerPage.value
   goToIndex(index)
 }
 
 const next = () => {
-  goToIndex(currentIndex.value + props.itemsPerPage)
+  goToIndex(currentIndex.value +  itemsPerPage.value)
 }
 
 const previous = () => {
-  goToIndex(currentIndex.value - props.itemsPerPage)
+  goToIndex(currentIndex.value -  itemsPerPage.value)
 }
 
 const startAutoplay = () => {
@@ -227,6 +228,8 @@ watch(() => props.items, () => {
 })
 
 onMounted(() => {
+  itemsPerView.value = isDesktop ? 4 : 2
+  itemsPerPage.value = isDesktop ? 3 : 2
   if (props.autoplay) {
     startAutoplay()
   }
