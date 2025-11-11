@@ -96,7 +96,7 @@ const nextSlide = () => {
 
 const previousSlide = () => {
   currentIndex.value = currentIndex.value === 0
-      ? MAX_COUNT
+      ? MAX_COUNT - 1
       : currentIndex.value - 1
 }
 
@@ -146,7 +146,7 @@ const handleTouchMove = (e: TouchEvent) => {
 
 const handleTouchEnd = () => {
   const diff = touchStartX.value - touchEndX.value
-  const minSwipeDistance = 100
+  const minSwipeDistance = 200
 
   if (Math.abs(diff) > minSwipeDistance) {
     if (diff > 0) {

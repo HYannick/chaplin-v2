@@ -25,7 +25,7 @@ export default defineNuxtConfig({
     preset: 'netlify',
     prerender: {
       crawlLinks: true,
-      routes: ['/sitemap.xml', '/robots.txt'],
+      // routes: ['/sitemap.xml', '/robots.txt'],
       ignore: ['/admin'],
     },
     routeRules: {
